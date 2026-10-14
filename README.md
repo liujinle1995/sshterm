@@ -67,7 +67,16 @@
 
 ## 下载
 
-`app-release.apk` 在 Releases 页面。装之前不用卸旧版 —— 同一个签名，可直接覆盖安装。
+[**下载 v1.4.1 的 APK**](https://github.com/liujinle1995/sshterm/releases/download/v1.4.1/sshterm-1.4.1.apk) · 也可在 [Releases](../../releases) 页面找历史版本。
+
+| | |
+| --- | --- |
+| 版本 | `1.4.1+6` |
+| 大小 | 56.5 MB |
+| SHA1 | `6def1144197d91a284d05c91a115bf02dd1aa36e` |
+| ABI | `arm64-v8a` / `armeabi-v7a` / `x86_64` |
+
+装之前不用卸旧版 —— 同一个签名，可直接覆盖安装。
 
 ## 技术栈
 
@@ -106,7 +115,7 @@ test/               109 个测试
 需要 Flutter 3.47+ 与 JDK 17。
 
 ```bash
-git clone <this-repo> && cd sshterm
+git clone https://github.com/liujinle1995/sshterm.git && cd sshterm
 
 # 国内网络加这两行可以少等很久
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
