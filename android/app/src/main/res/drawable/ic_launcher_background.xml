@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自适应图标背景：径向渐变，和外层 mipmap 里的传统图标保持一致 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:type="radial"
+        android:centerX="50%"
+        android:centerY="44%"
+        android:gradientRadius="78%p"
+        android:startColor="#1E4A52"
+        android:endColor="#091218" />
+</shape>

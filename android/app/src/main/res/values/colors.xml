@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 启动闪屏底色：和图标背景同一套深青黑，避免进暗色 App 时闪一下白 -->
+    <color name="launch_background">#0B1219</color>
+</resources>

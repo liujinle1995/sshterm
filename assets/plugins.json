@@ -1,0 +1,194 @@
+{
+  "comment": "App 内置能力模块清单。改这个文件就改 Casaos→设置→插件列表 里显示的内容，不需要改 Dart 代码。kind: core=不可替代的基础能力 / builtin=可关的功能模块 / planned=规划中。",
+  "plugins": [
+    {
+      "id": "terminal-zoom",
+      "name": "终端字号缩放",
+      "package": "内置",
+      "version": "1.4.0",
+      "kind": "builtin",
+      "enabled": true,
+      "summary": "10～22 号字随手调，快捷键栏尾巴上一个步进器就够。",
+      "details": [
+        "改动终端字号会重算格子尺寸并回调 onResize，远端 PTY 跟着一起变，vim/htop 不会画歪",
+        "缩放组挂在快捷键栏那一排的尾部，一格高度都不多占",
+        "到上下限时按钮自动置灰，而不是按了没反应",
+        "选择写进本地偏好，下次打开还是你调好的字号；导航栏菜单里也有对应入口"
+      ]
+    },
+    {
+      "id": "ssh-engine",
+      "name": "SSH 客户端引擎",
+      "package": "dartssh2",
+      "version": "4.1.0",
+      "kind": "core",
+      "enabled": true,
+      "summary": "纯 Dart 实现的 SSH2 协议栈，App 的一切联网能力都建立在它上面。",
+      "details": [
+        "支持 password 与 private key（PEM，可带口令）两种认证",
+        "SSH 通道内跑 PTY，远端拿到的就是一台真终端，而不是逐条 exec",
+        "30 秒一次 keep-alive，避免 NAT 把长时间没流量的会话掐掉",
+        "不依赖任何原生 .so，整包都是 Dart 代码"
+      ]
+    },
+    {
+      "id": "terminal-emulator",
+      "name": "终端仿真器",
+      "package": "xterm",
+      "version": "4.0.0",
+      "kind": "core",
+      "enabled": true,
+      "summary": "VT100 / xterm 转义序列解析器 + Flutter 渲染层。",
+      "details": [
+        "支持 256 色、粗体、下划线、反色等常用 SGR 属性",
+        "正确处理中文等宽字符占两列的问题，vim / top 不会画歪",
+        "5000 行滚动缓冲，够翻一会儿历史输出",
+        "终端行列变化会自动同步给远端 PTY（转屏、软键盘弹出都算）"
+      ]
+    },
+    {
+      "id": "credential-vault",
+      "name": "凭据保险箱",
+      "package": "flutter_secure_storage",
+      "version": "9.2.4",
+      "kind": "core",
+      "enabled": true,
+      "summary": "密码和私钥走 Android Keystore 加密存储，不写明文、不进备份。",
+      "details": [
+        "私钥本身只存在 Keystore 里，主机配置只留一个 id 引用",
+        "删除主机会连带清掉对应凭据，不留残留",
+        "Keystore 由系统提供，别的 App 读不到"
+      ]
+    },
+    {
+      "id": "host-book",
+      "name": "主机簿",
+      "package": "shared_preferences",
+      "version": "2.3.2",
+      "kind": "core",
+      "enabled": true,
+      "summary": "多台 Linux 的连接参数列表，增删改查与左滑删除。",
+      "details": [
+        "每台主机独立的端口、用户名、认证方式",
+        "列表按最近添加排序，支持左滑删除并二次确认"
+      ]
+    },
+    {
+      "id": "hostkey-tofu",
+      "name": "主机指纹校验",
+      "package": "内置",
+      "version": "1.0.0",
+      "kind": "core",
+      "enabled": true,
+      "summary": "首次连接记录公钥指纹（TOFU），以后变了就报警。",
+      "details": [
+        "首次连接会把指纹打在终端里，你可以自己跟服务端核对",
+        "指纹变了会直接中断连接，并把上次/本次两段指纹都列出来",
+        "不再无脑信任——这是防范中间人攻击的关键一层"
+      ]
+    },
+    {
+      "id": "soft-keys",
+      "name": "自定义快捷键栏",
+      "package": "内置",
+      "version": "1.1.0",
+      "kind": "builtin",
+      "enabled": true,
+      "summary": "手机软键盘没有 Ctrl/Alt/方向键，这里补上，而且可以自由增删。",
+      "details": [
+        "第一排固定：粘滞 Ctrl、Esc、Tab、四个方向键、Home/End/PgUp/PgDn",
+        "第二排完全由你在设置里定义，支持 Ctrl / Alt / Shift 任意叠加字母、功能键、符号",
+        "组合键按 xterm 规范编码成字节流：Ctrl+字符走控制码，Alt 补 ESC 前缀，功能键带修饰时用 CSI 参数形式",
+        "整条栏可以一键收起，把屏幕全留给终端"
+      ]
+    },
+    {
+      "id": "command-library",
+      "name": "命令速查库",
+      "package": "内置",
+      "version": "1.1.0",
+      "kind": "builtin",
+      "enabled": true,
+      "summary": "内置 31 条 Linux 运维常用命令，终端里点一下就发送。",
+      "details": [
+        "按系统 / 进程 / 网络 / 文件 / 容器 / 运维 六类分组",
+        "每条可选择「发送后立即执行」或「只填进去等你补参数」",
+        "可以增删改，把你自己的高频命令存进去"
+      ]
+    },
+    {
+      "id": "adaptive-icon",
+      "name": "Q 版桌面图标",
+      "package": "内置",
+      "version": "1.0.1",
+      "kind": "builtin",
+      "enabled": true,
+      "summary": "自适应图标，圆 / 圆角方 / 水滴形遮罩下都完整显示。",
+      "details": [
+        "前景内容按外接圆压进 72dp 可见区，切不到猫耳和提示符",
+        "同时提供传统方形图标，兼容 Android 8.0 以下",
+        "启动闪屏改成深色，进 App 不再闪一下白"
+      ]
+    },
+    {
+      "id": "sftp-browser",
+      "name": "SFTP 文件管理",
+      "package": "dartssh2 + path_provider",
+      "version": "2.1.6",
+      "kind": "builtin",
+      "enabled": true,
+      "summary": "在同一条 SSH 连接上开 SFTP 子通道，直接在手机上翻目录、看文件、传文件。",
+      "details": [
+        "复用当前连接开子系统，不用重新认证、不会第二次校验主机指纹",
+        "进入目录、面包屑跳转、隐藏文件折叠、新建 / 重命名 / 删除、权限与时间一目了然",
+        "文本文件（.conf / .log / .sh / .yaml …）直接查看，超过 256 KB 自动截断",
+        "下载走流式写入，几百兆的日志也不会把内存撑爆；同名文件自动加后缀，不覆盖",
+        "本机侧落在 App 自己的 transfer 目录（Android/data/<包名>/files），不需要存储权限，也可以手填任意绝对路径"
+      ]
+    },
+    {
+      "id": "mosh-bridge",
+      "name": "mosh 弱网接力",
+      "package": "规划中",
+      "version": "0.0.0",
+      "kind": "planned",
+      "enabled": false,
+      "summary": "地铁、电梯、切 Wi-Fi 时自动重连，不断线。",
+      "details": [
+        "mosh 用 UDP + 状态同步，网络恢复后自动接回上次的会话",
+        "需要目标机先安装 mosh-server",
+        "Dart 侧需要一个 mosh 协议实现，工作量偏大"
+      ]
+    },
+    {
+      "id": "multi-session",
+      "name": "多标签会话",
+      "package": "内置",
+      "version": "1.4.0",
+      "kind": "builtin",
+      "enabled": true,
+      "summary": "同时保持多台主机的连接，顶部标签条一台机器一个标签，切来切去不用重连。",
+      "details": [
+        "每个标签一套独立的 SSH 通道、PTY 和终端缓冲区，输出互不串台",
+        "切走的标签留在 IndexedStack 里不销毁，切回来滚动位置和历史输出都还在",
+        "标签上带状态小圆点（连接中 / 已连接 / 断开 / 失败），不用点开就知道",
+        "切换标签时主动交出焦点，避免软键盘留在上一个标签而按键发给新标签",
+        "已开着的机器在新标签弹窗里会置灰，防止同一台机器开两遍"
+      ]
+    },
+    {
+      "id": "release-signing",
+      "name": "正式签名密钥",
+      "package": "规划中",
+      "version": "0.0.0",
+      "kind": "planned",
+      "enabled": false,
+      "summary": "换成你自己的 keystore，而不是默认的 debug 密钥。",
+      "details": [
+        "当前 APK 用的是 Android 默认 debug 密钥，只适合自用分发",
+        "正式分发前生成一份独立 keystore 并配进 android/app/build.gradle.kts",
+        "密钥一旦丢失就无法再更新同一个包名的 App"
+      ]
+    }
+  ]
+}

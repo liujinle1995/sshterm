@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 启动闪屏：纯深色底，跟图标背景 / App 主题保持一致。
+     原来是 @android:color/white，暗色 App 启动时会闪一下白。 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/launch_background" />
+</layer-list>
